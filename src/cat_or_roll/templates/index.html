@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cat or Cinnamon Roll?</title>
+  <style>
+    body {
+      background-color: #F8F3FF;
+      font-family: "Comic Sans MS", cursive, sans-serif; 
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border: 2px solid #DDBBF2
+    }
+
+    h1 {
+      text-align: center;
+      color: #6B2A6A; 
+      margin-bottom: 0;
+    }
+
+    p.description {
+      text-align: center;
+      font-size: 1.1em;
+      color: #803B8C;
+      margin-top: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      border: 2px dashed #B280B2;
+      border-radius: 4px;
+      background-color: #F3E5F5;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #A020F0; /* Purple button */
+      color: #ffffff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #912CEE; 
+    }
+
+    .result, .error {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1em;
+    }
+    .result {
+      background-color: #E9D8F4;
+      color: #4A054A;
+      border: 2px solid #C89BD8;
+    }
+    .error {
+      background-color: #F8D7DA;
+      color: #721C24;
+      border: 2px solid #F5C6CB;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cat or Cinnamon Roll?</h1>
+    <p class="description">
+      Welcome to the most advanced cat-or-cinnamon-roll detection system in the galaxy!
+      Upload an image of your Abyssinian cat and let's see if it's a sweet treat or a furry friend.
+    </p>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+    
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/*" required>
+      <input type="submit" value="Classify">
+    </form>
+    
+    {% if result %}
+      <div class="result">
+        <p>
+          I am {{ (result.confidence * 100) | round(2) }}% sure it's a 
+          <strong>{{ result.predicted }}</strong>!
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
