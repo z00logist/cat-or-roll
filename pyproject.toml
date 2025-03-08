@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "cat-or-roll"
+version = "0.1.0"
+description = ""
+authors = ["Anastasia Margolina <margoanastasija27@gmail.com>"]
+readme = "README.md"
+packages = [{include = "cat_or_roll"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = "^2.6.0"
+pillow = "^11.1.0"
+torchvision = "^0.21.0"
+scikit-learn = "^1.6.1"
+flask = "^3.1.0"
+pydantic = "^2.10.6"
+pydantic-settings = "^2.8.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
